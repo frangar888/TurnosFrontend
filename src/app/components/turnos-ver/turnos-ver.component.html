@@ -1,0 +1,135 @@
+<h2 mat-dialog-title>Detalle Turno</h2>
+<mat-dialog-content class="mat-typography">
+  <form
+    action=""
+    class="mid-form"
+    #donacionForm="ngForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <section style="float: left; width: 45%">
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>Fecha</mat-label>
+          <input
+            name="turno_fecha_str"
+            #turno_fecha_str="ngModel"
+            [(ngModel)]="turno.turno_fecha_str"
+            matInput
+            type="date"
+            required
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>Hora</mat-label>
+          <input
+            name="turno_hora_str"
+            #turno_hora_str="ngModel"
+            [(ngModel)]="turno.turno_hora_str"
+            matInput
+            type="time"
+            required
+          />
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>Odontologo</mat-label>
+          <mat-select
+            name="medico"
+            paciente_obra_social="ngModel"
+            [compareWith]="compareMedicos"
+            [(value)]="selectedMedico"
+            [(ngModel)]="turno.medico"
+            required
+          >
+            <mat-option *ngFor="let med of medicos" [value]="med">
+              {{ med.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </section>
+    <section style="float: left; width: 53%; margin-left: 1em">
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>DNI Paciente</mat-label>
+          <input
+            name="paciente_dni"
+            #paciente_dni="ngModel"
+            [(ngModel)]="turno.paciente_dni"
+            type="number"
+            required
+            matInput
+          />
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre Paciente</mat-label>
+          <input
+            name="paciente_nombre"
+            #paciente_nombre="ngModel"
+            [(ngModel)]="turno.paciente_nombre"
+            required
+            matInput
+          />
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>Obra Social</mat-label>
+          <mat-select
+            name="paciente_obra_social"
+            paciente_obra_social="ngModel"
+            [(ngModel)]="turno.paciente_obra_social"
+            required
+          >
+            <mat-option
+              *ngFor="let obr of obras_sociales"
+              [value]="obr.obraSocial"
+            >
+              {{ obr.obraSocial }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </section>
+    <section style="float: left; width: 100%">
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>Motivo de la consulta</mat-label>
+          <textarea
+            name="paciente_motivo_consulta"
+            paciente_motivo_consulta="ngModel"
+            [(ngModel)]="turno.paciente_motivo_consulta"
+            matInput
+          ></textarea>
+        </mat-form-field>
+      </div>
+    </section>
+    <button style="float: left" type="submit" mat-raised-button color="primary">
+      Grabar
+    </button>
+    <button
+      style="float: left; margin-left: 1em"
+      mat-raised-button
+      mat-dialog-close
+      color="accent"
+    >
+      Descartar
+    </button>
+    <button
+      style="float: left; margin-left: 1em"
+      mat-raised-button
+      mat-dialog-close
+      color="warn"
+      (click)="borrar()"
+    >
+      Borrar
+    </button>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end"> </mat-dialog-actions>

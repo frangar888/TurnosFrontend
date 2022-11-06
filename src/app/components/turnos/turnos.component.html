@@ -1,0 +1,12 @@
+<div>
+  <h1>Agenda de Turnos</h1>
+  <section>
+    <div style="margin-top: 1em">
+      <button (click)="newTurno()" mat-raised-button color="primary">
+        Nuevo Turno
+      </button>
+    </div>
+
+    <full-calendar #calendar [options]="calendarOptions"></full-calendar>
+  </section>
+</div>
